@@ -1,0 +1,58 @@
+---
+- name: Start and enable Docker service
+  ansible.builtin.systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Clone repo to directory
+  ansible.builtin.git:
+    repo: 'https://github.com/lin001234/ntu_stars_swapper.git'
+    dest: /home/{{ansible_user}}/ci 
+    version: main
+    force: yes
+
+- name: Stop and remove existing containers
+  docker_container:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - star_swapper-frontend
+    - star_swapper-backend
+
+- name: Remove old docker images
+  docker_image:
+    name: "{{ item }}"
+    state: absent
+  loop:
+    - star_swapper-frontend
+    - star_swapper-backend
+    
+- name: Build docker image
+  command: docker compose build
+  args:
+    chdir: "/home/{{ansible_user}}/ci"
+
+- name: Run docker application in background
+  command: docker compose up -d
+  args:
+    chdir: "/home/{{ansible_user}}/ci"
+
+- name: Wait for services to be active
+  pause:
+    seconds: 5
+
+- name: Fetch logs for each container
+  command: docker logs {{ item }}
+  loop:
+    - star_swapper-frontend
+    - star_swapper-backend
+  register: container_logs
+  
+
+- name: Display logs
+  debug: 
+    msg: |
+      === Logs for container: {{ item.item }} ===
+      {{ item.stdout }}
+  loop: "{{ container_logs.results }}"

@@ -1,0 +1,13 @@
+.gitignore
+.dockerignore
+
+# env files
+.env*
+*.log
+
+# Ignore all node_modules directories
+node_modules/
+Dockerfile
+/dist
+/build
+npm-debug.log

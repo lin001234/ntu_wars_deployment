@@ -1,0 +1,9 @@
+- name: Running Docker-Compose
+  hosts: all
+  become: true
+
+  roles:
+  - role: base
+    tags: base
+  - role: deploy
+    tags: deploy

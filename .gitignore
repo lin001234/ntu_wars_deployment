@@ -1,0 +1,11 @@
+.terraform
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
+tfplan
+terraform.tfvars
+*.auto.tfvars
+
+inventory.yml
+
+node_modules

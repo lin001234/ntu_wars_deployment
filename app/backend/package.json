@@ -1,0 +1,40 @@
+{
+  "name": "ntu_stars_swapper",
+  "version": "1.0.0",
+  "description": "A website that allow for easier and simplier swapping of index between individuals",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "migrate": "node src/migrations/createTables.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.8",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "googleapis": "^150.0.1",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "passport": "^0.6.0",
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth20": "^2.0.0",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lin001234/ntu_stars_swapper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lin001234/ntu_stars_swapper/issues"
+  },
+  "homepage": "https://github.com/lin001234/ntu_stars_swapper#readme"
+}
