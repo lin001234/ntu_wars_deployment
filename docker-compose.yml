@@ -28,6 +28,7 @@ services:
       target: prod
       args:
         VITE_BACKEND_URL: http://localhost
+        # change to vm public address in deployment
     ports:
     -  "5173:80"
     environment:
@@ -39,6 +40,7 @@ services:
       - app-network
 
   nginx:
+    image: nginx-proxy
     container_name: nginx-proxy
     build:
       context: ./app/proxy

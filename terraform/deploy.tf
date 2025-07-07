@@ -76,9 +76,9 @@ resource "azurerm_network_security_group" "VM_nsg" {
     destination_address_prefix = "*"
   }
   
-    security_rule {
-    name                       = "AllowAnyCustom3000Inbound"
-    priority                   = 1020
+  security_rule {
+    name                       = "AllowAnyCustom5173Inbound"
+    priority                   = 1030
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
