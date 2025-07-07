@@ -1,0 +1,22 @@
+name: Deploy to remote server
+
+on:
+  push:
+    branches:
+      main
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run ansible playbook
+        uses: dawidd6/action-ansible-playbook@v4
+        with:
+          playbook: setup.yml
+          directory: ansible
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          options: |
+            --inventory inventory.ini
