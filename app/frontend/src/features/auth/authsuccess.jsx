@@ -14,7 +14,7 @@ function AuthSuccess(){
     const [isReady,setIsReady] = useState(false);
 
     useEffect(() => {
-      fetch(`${process.env.CLIENT_backend_URL}/api/profile`, {
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/profile`, {
         credentials: 'include', // sends the cookie automatically
       })
       .then(res => {

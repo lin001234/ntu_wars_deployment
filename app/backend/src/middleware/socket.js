@@ -7,6 +7,7 @@ const app = express();
 const server=http.createServer(app);
 
 const io = new SocketServer(server, {
+  path: "/api/socket.io",
   cors: {
     origin: process.env.CLIENT_URL || 'http://localhost:5173',
     credentials: true,

@@ -7,7 +7,7 @@
 
 - name: Clone repo to directory
   ansible.builtin.git:
-    repo: 'https://github.com/lin001234/ntu_stars_swapper.git'
+    repo: 'https://github.com/lin001234/ntu_wars_deployment.git'
     dest: /home/{{ansible_user}}/ci 
     version: main
     force: yes
@@ -27,7 +27,7 @@
   loop:
     - star_swapper-frontend
     - star_swapper-backend
-    
+
 - name: Build docker image
   command: docker compose build
   args:

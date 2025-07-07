@@ -2,6 +2,7 @@ import { create } from "zustand";
 import {persist} from 'zustand/middleware';
 import { axiosInstance } from "../components/axios";
 import { io } from "socket.io-client";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL; // Make sure BASE_URL is properly defined.
 
 export const useAuthStore = create(persist(
     (set,get) =>({
@@ -68,7 +69,8 @@ export const useAuthStore = create(persist(
             }
             console.log('connectSocket: Creating new socket connection for user:', userId, username);
 
-            const newSocket = io(process.env.CLIENT_backend_URL, {
+            const newSocket = io(BASE_URL, {
+                path: "/api/socket.io",
                 withCredentials:true,
                 query: {
                     userId,

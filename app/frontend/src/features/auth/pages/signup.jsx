@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.CLIENT_backend_URL;
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL;
 
 const LoginPage = ({ onLogin, isLoading }) => {
   const handleGoogleLogin = () => {

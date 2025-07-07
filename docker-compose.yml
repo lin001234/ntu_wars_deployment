@@ -27,9 +27,9 @@ services:
       dockerfile: Dockerfile
       target: prod
       args:
-        VITE_BACKEND_URL: http://star_swapper-backend:3000
+        VITE_BACKEND_URL: http://localhost
     ports:
-    -  "5173:5173"
+    -  "5173:80"
     environment:
       - NODE_ENV=production
     restart: unless-stopped
@@ -37,6 +37,20 @@ services:
       - backend
     networks:
       - app-network
+
+  nginx:
+    container_name: nginx-proxy
+    build:
+      context: ./app/proxy
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
 
 networks:
   app-network:

@@ -3,7 +3,8 @@ import io from 'socket.io-client';
 
 const useSocket =(userId)=>{
     useEffect(() =>{
-        const socket = io(process.env.CLIENT_URL,{
+        const socket = io(import.meta.env.VITE_BACKEND_URL,{
+            
             query:{
                 userId: userId,
             },

@@ -20,10 +20,10 @@ FROM nginx:alpine AS prod
 COPY --from=builder /app/dist /usr/share/nginx/html
 
 # Copy custom NGINX config (set to listen on 5173)
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 5173 (matching your app's port)
-EXPOSE 5173
+EXPOSE 80
 
 # Start NGINX in foreground
 CMD ["nginx", "-g", "daemon off;"]
