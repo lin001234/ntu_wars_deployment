@@ -1,3 +1,31 @@
+# Deployment
+
+## 1. System Architecutre 
+  1. 3 containers (frontend,backend,nginx)
+  2. Ensure only nginx port is open, rest should not be open (Better security as nginx acts as reverse proxy)
+  3. Move frontend,backend to private subnet while nginx stay in public subnet(Ensure backend cannot be reached, in case of attack)
+
+## 2. Set up terraform to create resource group, etc
+  ```
+  terraform init
+  terraform plan
+  terraform apply
+  ```
+
+## 3. Set up ansible-playbook to automate installing dependencies, etc and running docker compose in remote server
+  ```
+  tags are optional
+  ansible-playbook -i inventory.ini setup.yml --tags
+  ```
+  
+## 4. Set up github secrets for ssh private key etc
+
+## 5. Set up github actions to automate ansible after every push for deployment
+
+
+
+
+
 - [1. Introduction](#1-introduction)
   - [1.1 Features of Our Project](#11-features-of-our-project)
 - [2. To get Started](#2-to-get-started)
