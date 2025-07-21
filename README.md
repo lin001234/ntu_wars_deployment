@@ -118,6 +118,3 @@ docker-compose stop
 ```
 docker-compose up --build 
 ```
-
-# 4. Acknowledgments
-Created by Lin and Wei Jie
