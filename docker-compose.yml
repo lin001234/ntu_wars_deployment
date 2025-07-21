@@ -8,8 +8,8 @@ services:
       dockerfile: Dockerfile
       #By specifying target: prod, Docker will only build up to the prod stage, skipping earlier stages (like build). This can save time and resources if you only need the final, production-ready image.
       target: prod
-    ports:
-    - "3000:3000"
+    #ports:
+    #- "3000:3000"
     environment:
       - NODE_ENV=production
     env_file:
@@ -29,8 +29,8 @@ services:
       args:
         VITE_BACKEND_URL: http://localhost
         # change to vm public address in deployment
-    ports:
-    -  "5173:80"
+    #ports:
+    #-  "5173:80"
     environment:
       - NODE_ENV=production
     restart: unless-stopped
@@ -46,7 +46,9 @@ services:
       context: ./app/proxy
       dockerfile: Dockerfile
     ports:
-      - "80:80"
+      - "443:443"
+    volumes:
+      - /mnt/c/Users/khant/nginx-certs:/nginx-certs
     depends_on:
       - frontend
       - backend

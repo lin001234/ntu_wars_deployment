@@ -13,22 +13,9 @@
     force: yes
 
 - name: Stop and remove existing containers
-  docker_container:
-    name: "{{ item }}"
-    state: absent
-  loop:
-    - star_swapper-frontend
-    - star_swapper-backend
-    - nginx-proxy
-
-- name: Remove old docker images
-  docker_image:
-    name: "{{ item }}"
-    state: absent
-  loop:
-    - star_swapper-frontend
-    - star_swapper-backend
-    - nginx-proxy
+  command: docker compose down -v
+  args:
+    chdir: "/home/{{ansible_user}}/ci"
 
 - name: Build docker image
   command: docker compose build
